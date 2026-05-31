@@ -73,7 +73,6 @@ function playSequence() {
 
             playColorSound(color);
             gameFlash(btn);
-
         }, index * 600);
     });
 }
@@ -94,7 +93,6 @@ function levelUp() {
 }
 
 function checkAns(idx) {
-
     if (userSeq[idx] === gameSeq[idx]) {
 
         if (userSeq.length === gameSeq.length) {
@@ -113,7 +111,7 @@ function checkAns(idx) {
         beep(150);
 
         heading2.innerHTML =
-            `Game Over! Your score was <b>${level - 1}</b><br>Tap or press any key to start.`;
+            `Game Over! Your score was <b>${level - 1}</b><br>Tap anywhere or press any key to restart`;
 
         gameOver();
 
@@ -121,7 +119,9 @@ function checkAns(idx) {
     }
 }
 
-function buttonPress() {
+function buttonPress(event) {
+
+    event.stopPropagation();
 
     if (!started) return;
 
