@@ -12,12 +12,15 @@ let highestScore = 0;
 let hsBox = document.querySelector(".box h3");
 hsBox.innerText = `Highest Score: ${highestScore}`;
 
-document.addEventListener("keypress", function () {
-    if (started == false) {
+function startGame() {
+    if (!started) {
         started = true;
         levelUp();
     }
-});
+}
+
+document.addEventListener("keypress", startGame);
+document.addEventListener("click", startGame);
 
 function beep(freq) {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -110,7 +113,7 @@ function checkAns(idx) {
         beep(150);
 
         heading2.innerHTML =
-            `Game Over! Your score was <b>${level - 1}</b><br>Press any key to start.`;
+            `Game Over! Your score was <b>${level - 1}</b><br>Tap or press any key to start.`;
 
         gameOver();
 
